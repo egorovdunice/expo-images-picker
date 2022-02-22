@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from 'react'
 import { Dimensions, View, ActivityIndicator, StyleSheet } from 'react-native'
 import styled from 'styled-components/native'
-import * as MediaLibrary from 'expo-media-library'
+import * as MediaLibrary from 'expo-image-picker'
 import {
     Asset,
     AssetsOptions,
@@ -99,7 +99,7 @@ const AssetsSelector = ({
         try {
             const {
                 status: MEDIA_LIBRARY,
-            }: MediaLibrary.PermissionResponse = await MediaLibrary.requestPermissionsAsync()
+            } = await MediaLibrary.requestMediaLibraryPermissionsAsync();
             if (MEDIA_LIBRARY !== 'granted') {
                 setLoading(false)
                 setError({
